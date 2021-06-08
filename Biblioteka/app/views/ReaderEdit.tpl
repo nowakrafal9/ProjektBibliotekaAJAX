@@ -1,5 +1,12 @@
-{block name=content}
+{if isset($error)}
+    {$name = 'main_template.tpl'}
+{else}
+    {$name = 'AjaxContent.tpl'}
+{/if}
+    {extends $name}
     
+{block name=content}
+
     <section style = "padding-top: 1em; padding-bottom: 0;">
         
         <div class="row">                    

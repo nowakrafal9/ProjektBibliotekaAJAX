@@ -126,7 +126,8 @@
                     $this->generateView("ReaderAdd.tpl");    
                 }
                 else if($this->pageMode == "ReaderEdit"){
-                    $this->generateView("ReaderEditErr.tpl");   
+                    App::getSmarty()->assign('error', true);
+                    $this->generateView("ReaderEdit.tpl");   
                 }
                 else{
                     App::getRouter()->redirectTo('main');
