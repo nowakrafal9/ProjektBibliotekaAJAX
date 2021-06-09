@@ -7,7 +7,7 @@
     class MainCtrl {
          public function action_main() {
             # Redirect to page
-               $this->generateView();
+            $this->generateView();
         }
         
         public function generateView() { 

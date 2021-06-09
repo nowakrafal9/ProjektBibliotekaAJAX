@@ -36,14 +36,18 @@
 
     # Borrowed book informations
         Utils::addRoute('borrowedList', 'BorrowedBooksCtrl', ['Pracownik', "Administrator"]);
-        Utils::addRoute('borrowedReturn', 'BorrowedBooksCtrl', ['Pracownik', "Administrator"]);
+        Utils::addRoute('borrowedListData', 'BorrowedBooksCtrl', ['Pracownik', "Administrator"]);
+        Utils::addRoute('borrowedInfo', 'BorrowedBooksCtrl', ['Pracownik', "Administrator"]);
         
     # Return/borrow book
         Utils::addRoute('bookReturn', 'BorrowedBooksCtrl', ['Pracownik', "Administrator"]);
         Utils::addRoute('bookBorrow', 'BookBorrowCtrl', ['Pracownik', "Administrator"]);
+        Utils::addRoute('BorrowBorrowerData', 'BookBorrowCtrl', ['Pracownik', "Administrator"]);
+        Utils::addRoute('BorrowBookData', 'BookBorrowCtrl', ['Pracownik', "Administrator"]);
         
     # Employee accounts info
         Utils::addRoute('employeeList', 'EmployeeCtrl', ["Administrator"]);
+        Utils::addRoute('employeeListData', 'EmployeeCtrl', ["Administrator"]);
         Utils::addRoute('employeeInfo', 'EmployeeCtrl', ["Administrator"]);
         
     # Employee add/edit

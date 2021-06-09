@@ -1,7 +1,7 @@
 {if isset($error)}
     {$name = 'main_template.tpl'}
 {else}
-    {$name = 'AjaxContent.tpl'}
+    {$name = 'insertPage_template.tpl'}
 {/if}
     {extends $name}
     
