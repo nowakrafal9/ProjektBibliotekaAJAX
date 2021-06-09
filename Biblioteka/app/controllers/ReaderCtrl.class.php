@@ -75,6 +75,7 @@
             # Redirect to page
             $this->generateView("ReaderListFull.tpl");
         }
+        
         public function action_readerListData(){        
             #load data
             $this->loadListData();

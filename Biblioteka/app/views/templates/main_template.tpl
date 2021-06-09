@@ -51,7 +51,7 @@
                                 </ul>
                             </li> 
                             {/if}
-                            <li><a href="{url action = 'bookList'}">Informacje o książce</a></li>
+                            <li><a href="{url action = 'titleList'}">Informacje o książce</a></li>
                             <li>
                                 <span class="opener">Wypożyczone książki</span>
                                 <ul>
@@ -62,7 +62,7 @@
                             <li>
                                 <span class="opener">Lista książek</span>
                                 <ul>
-                                    <li><a href="{url action = 'bookStock'}">Lista książek</a></li>
+                                    <li><a href="{url action = 'bookList'}">Lista książek</a></li>
                                     <li><a href="{url action = 'bookAdd'}">Dodaj książkę</a></li>
                                 </ul>
                             </li> 

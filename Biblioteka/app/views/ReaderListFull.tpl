@@ -4,7 +4,7 @@
     
     <section style = "padding-top: 1em; padding-bottom: 0;">
 
-        <form id="filter-form" onsubmit="ajaxPostForm('filter-form','{$conf->action_root}readerListData','data'); return false;">
+        <form id="form" onsubmit="ajaxPostForm('form','{$conf->action_root}readerListData','data'); return false;">
 
             <div class="row gtr-uniform" style="padding-bottom:0.75em">
                 <div class="col-3 col-5-xsmal">
@@ -19,7 +19,9 @@
             </div>
 
             <input type="submit" value="Szukaj" class="primary">
-            <a href="{url action = 'readerList'}" class="button">Wyczyść filtr</a>
+            <a onclick="document.getElementById('form').reset();
+               ajaxPostForm('form','{$conf->action_root}readerListData','data')" class="button">Wyczyść filtr</a>
+
         </form> 
         {if {$user->role}=="Administrator"}
             <p>

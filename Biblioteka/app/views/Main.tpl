@@ -11,7 +11,7 @@
                 </div>
             </article>
 
-            <article onclick="location='{$conf->action_url}bookList'" onmouseover="this.style.backgroundColor='#F4F4F4'" onmouseout="this.style.backgroundColor=''" style = "cursor: pointer; ">
+            <article onclick="location='{$conf->action_url}titleList'" onmouseover="this.style.backgroundColor='#F4F4F4'" onmouseout="this.style.backgroundColor=''" style = "cursor: pointer; ">
                 <span class="icon solid fa-book"></span>
                 <div class="content">
                     <h3>Informacja o książkach</h3>
@@ -27,7 +27,7 @@
                 </div>
             </article>
 
-            <article onclick="location='{$conf->action_url}bookStock'" onmouseover="this.style.backgroundColor='#F4F4F4'" onmouseout="this.style.backgroundColor=''" style = "cursor: pointer; ">
+            <article onclick="location='{$conf->action_url}bookList'" onmouseover="this.style.backgroundColor='#F4F4F4'" onmouseout="this.style.backgroundColor=''" style = "cursor: pointer; ">
                 <span class="icon solid fa-building"></span>
                 <div class="content">
                     <h3>Lista książek</h3>

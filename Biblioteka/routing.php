@@ -23,9 +23,10 @@
         Utils::addRoute('readerSave', 'ReaderEditCtrl', ["Administrator"]);
     
     # Book informations  
+        Utils::addRoute('titleList', 'BookCtrl', ['Pracownik', "Administrator"]);
+        Utils::addRoute('titleListData', 'BookCtrl', ['Pracownik', "Administrator"]);
+        Utils::addRoute('titleInfo', 'BookCtrl', ['Pracownik', "Administrator"]);
         Utils::addRoute('bookList', 'BookCtrl', ['Pracownik', "Administrator"]);
-        Utils::addRoute('bookInfo', 'BookCtrl', ['Pracownik', "Administrator"]);
-        Utils::addRoute('bookStock', 'BookCtrl', ['Pracownik', "Administrator"]);
     
     # Book edit/add
         Utils::addRoute('bookAdd', 'BookStockEditCtrl', ['Pracownik', "Administrator"]);
