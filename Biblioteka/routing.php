@@ -27,11 +27,12 @@
         Utils::addRoute('titleListData', 'BookCtrl', ['Pracownik', "Administrator"]);
         Utils::addRoute('titleInfo', 'BookCtrl', ['Pracownik', "Administrator"]);
         Utils::addRoute('bookList', 'BookCtrl', ['Pracownik', "Administrator"]);
+        Utils::addRoute('bookListData', 'BookCtrl', ['Pracownik', "Administrator"]);
     
     # Book edit/add
-        Utils::addRoute('bookAdd', 'BookStockEditCtrl', ['Pracownik', "Administrator"]);
-        Utils::addRoute('bookDelete', 'BookStockEditCtrl', ['Pracownik', "Administrator"]);
-        Utils::addRoute('bookSave', 'BookStockEditCtrl', ['Pracownik', "Administrator"]);
+        Utils::addRoute('bookAdd', 'BookListEditCtrl', ['Pracownik', "Administrator"]);
+        Utils::addRoute('bookDelete', 'BookListEditCtrl', ['Pracownik', "Administrator"]);
+        Utils::addRoute('bookSave', 'BookListEditCtrl', ['Pracownik', "Administrator"]);
 
     # Borrowed book informations
         Utils::addRoute('borrowedList', 'BorrowedBooksCtrl', ['Pracownik', "Administrator"]);

@@ -22,7 +22,7 @@
                 $this->book->title = ParamUtils::getFromRequest('title');
             }
             
-            if($source == "bookStock"){
+            if($source == "bookList"){
                 $this->book->book_code = ParamUtils::getFromRequest('book_code');
                 $this->book->title = ParamUtils::getFromRequest('title');
                 $this->book->borrowed = ParamUtils::getFromRequest('borrowed');
@@ -35,7 +35,7 @@
             return !App::getMessages()->isError();
         }
            
-        public function loadListData() {
+        public function loadTitleListData() {
             # Get params
             $this -> getForm("titleList");
             
@@ -69,16 +69,16 @@
         }
         
         public function action_titleList(){   
-            #load data
-            $this->loadListData();
+            # Load data
+            $this->loadTitleListData();
             
             # Redirect to page
             $this->generateView("TitleListFull.tpl");
         }
         
         public function action_titleListData(){   
-            #load data
-            $this->loadListData();
+            # Load data
+            $this->loadTitleListData();
             
             # Redirect to page
             $this->generateView("TitleListData.tpl");
@@ -113,9 +113,9 @@
             }
         }
         
-        public function action_bookStock(){ 
+        public function loadBookListData() {
             # Get params
-            $this -> getForm("bookStock");
+            $this -> getForm("bookList");
             
             # Set filter params    
             $filter_params = [];
@@ -151,11 +151,24 @@
                 $column = ["book_stock.id_book", "book_info.title", "book_stock.borrowed"];
                 App::getSmarty()->assign('records', FunctionsDB::getRecords("select", "book_stock", $join, $column, $where));
             }
+        }
+        
+        public function action_bookList(){ 
+            # Load data
+            $this->loadBookListData();
             
             # Redirect to page
-            $this->generateView("Book_bookStock.tpl");
+            $this->generateView("BookListFull.tpl");
         }
-    
+        
+        public function action_bookListData(){ 
+            # Load data
+            $this->loadBookListData();
+            
+            # Redirect to page
+            $this->generateView("BookListData.tpl");
+        }
+        
         public function generateView($page) {
             App::getSmarty()->assign('user', SessionUtils::loadObject("user", true));
             
