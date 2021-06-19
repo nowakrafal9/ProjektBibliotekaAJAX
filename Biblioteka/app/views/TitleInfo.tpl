@@ -6,7 +6,7 @@
 
         <h3 class="content">{$book["title"]}</h3>   
         <p>
-            <strong>Kod tytułu:</strong> {$book["book_code"]}
+            <strong>Kod ISBN-13:</strong> {$book["book_code"]}
         </p>
         <p>
             <strong>Autor:</strong> {$book["name"]} {$book["surname"]} <br/>             

@@ -2,7 +2,7 @@
 $conf->debug = true; # set true during development and use in your code (for instance check if true to send additional message)
 
 # ---- Webapp location
-$conf->server_name = 'localhost';   # server address and port
+$conf->server_name = '127.0.0.1';   # server address and port
 $conf->protocol = 'http';           # http or https
 $conf->app_root = '/pliki/ProjektBibliotekaAJAX/Biblioteka/public';   # project subfolder in domain (relative to main domain)
 

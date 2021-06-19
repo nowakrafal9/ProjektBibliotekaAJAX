@@ -20,8 +20,7 @@
                         <td style="width: 15%">{if {$r["borrowed"]} == "0"}Niewypożyczona{else}Wypożyczona{/if}</td>   
                         <td style="width: 15%">
                             {if {$r["borrowed"]} == "0"}     
-                                {*<center><a href="{url action = 'bookDelete'}/{$r["id_book"]}" class="button small">Usuń</a></center>*}
-                                <center><a class="button small" onclick="confirmLink('{$conf->action_url}bookDelete/{$r["id_book"]}','Czy na pewno usunąć książkę:\n\nKod: {$r["id_book"]}\nTytuł: {$r["title"]}?')" >Usuń</a></center>
+                                <center><a class="button small" onclick="confirmLink('{$conf->action_url}bookDelete/{$r["id_book"]}','Czy na pewno usunąć książkę:\n\nKod książki: {$r["id_book"]}\nTytuł: {$r["title"]}?')" >Usuń</a></center>
                             {else}
                                 <center><span class="button small disabled">Usuń</span></center>
                             {/if}

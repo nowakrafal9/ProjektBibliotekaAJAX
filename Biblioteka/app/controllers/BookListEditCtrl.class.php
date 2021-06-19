@@ -64,18 +64,20 @@
         public function action_bookSave() {
             if ($this->validateSave()){
                 try {
+                    $title = FunctionsDB::getRecords("get", "book_info", null, "title", ["book_code" => $this->book->book_code]);
                     App::getDB()->insert("book_stock", [
                         "id_book" => $this->book->id_book,
                         "book_code" => $this->book->book_code,
-                        "title" => FunctionsDB::getRecords("get", "book_info", null, "title", ["book_code" => $this->book->book_code]),
+                        "title" => $title,
                         "borrowed" => 0,
                         "id_employee" => SessionUtils::load("id_employee", true)
                         ]);
-                    Utils::addInfoMessage('Dodano książkę do bazy');
+                    Utils::addInfoMessage('Dodano książkę "'. $title .'" o kodzie "'. $this->book->id_book .'" do bazy. Kod ISBN-13: "'.$this->book->book_code.'".');
                 } catch (Exception $e) {
                     Utils::addErrorMessage('Wystąpił błąd podczas modyfikacji rekordów');
                     if (App::getConf()->debug){ Utils::addErrorMessage($e->getMessage()); }
                 }
+                
                 App::getRouter()->forwardTo('bookAdd');
             }
             else{

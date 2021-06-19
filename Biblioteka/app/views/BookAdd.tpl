@@ -15,7 +15,7 @@
                         </div>
 
                         <div class="col-8 col-12-xsmall">
-                            <strong>Kod tytułu:</strong>
+                            <strong>Kod ISBN-13:</strong>
                             <input type="text" name="book_code" id="book_code" value="{$form->book_code}" placeholder="Kod tytułu">
                         </div>
                         

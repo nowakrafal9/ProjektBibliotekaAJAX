@@ -63,8 +63,8 @@
                 $where["LIMIT"] = [$offset, $this->recordsPerPage];
 
                 # Get book titles list from DB
-                $column = ["id_book", "title"];
-                App::getSmarty()->assign('records', FunctionsDB::getRecords("select", "book_info", null, $column, $where));
+                $column = ["id_title", "title"];
+                App::getSmarty()->assign('records', FunctionsDB::getRecords("select", "book_info", null, $column, $where));  
             }
         }
         
@@ -87,15 +87,15 @@
         public function action_titleInfo(){
             if($this -> getURL()){   
                 # Check if title exists
-                if(!App::getDB()->has("book_info", ["id_book" => $this->book->id_book])){
+                if(!App::getDB()->has("book_info", ["id_title" => $this->book->id_book])){
                     App::getRouter()->redirectTo("bookList");
                 }
                 
                 # Get book info    
-                $join = ["[><]author_info" => ["author" => "id_author"]];
+                $join = ["[><]author_info" => "id_author", "[><]publisher" => "id_publisher", "[><]genre" => "id_genre" ];
                 $colum = ["book_info.book_code", "book_info.title", "book_info.pages", "author_info.name", 
-                          "author_info.surname", "book_info.genre", "book_info.publisher"];
-                $where = ["id_book" => $this->book->id_book];
+                          "author_info.surname", "genre.genre_name(genre)", "publisher.publisher_name(publisher)"];
+                $where = ["id_title" => $this->book->id_book];
                 App::getSmarty()->assign('book', FunctionsDB::getRecords("get", "book_info", $join, $colum,$where));
 
                 # Get number of books
@@ -125,7 +125,7 @@
             if (isset($this->book->title) && strlen($this->book->title) > 0) {
                 $filter_params['book_stock.title[~]'] = $this->book->title.'%';
             }
-            if (isset($this->book->borrowed) && strlen($this->book->borrowed) > 0) {
+            if (isset($this->book->borrowed)) {
                 $filter_params['book_stock.borrowed[~]'] = $this->book->borrowed.'%';
             }
             App::getSmarty()->assign('searchForm', $this->book);
@@ -147,7 +147,7 @@
                 $where["LIMIT"] = [$offset, $this->recordsPerPage];
 
                 # Get books in library from DB
-                $join =["[><]book_info" => ["book_code" => "book_code"]];
+                $join =["[><]book_info" => "book_code"];
                 $column = ["book_stock.id_book", "book_info.title", "book_stock.borrowed"];
                 App::getSmarty()->assign('records', FunctionsDB::getRecords("select", "book_stock", $join, $column, $where));
             }

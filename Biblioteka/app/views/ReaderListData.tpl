@@ -37,11 +37,12 @@
             {/if}
 
             <center>
-                <button class="primary" formaction="{url action = "readerList" p = 1}" {if {$page}==1}disabled{/if}> &lt;&lt; </button>
-                <button class="primary" formaction="{url action = "readerList" p = {$page-1}}" {if {$page-1}==0}disabled{/if}> &lt; </button>
+                
+                <button class="primary" onclick="ajaxPostForm('form', '{url action="readerListData" p = 1}', 'data'); return false;" {if {$page}==1}disabled{/if}> &lt;&lt; </button>
+                <button class="primary" onclick="ajaxPostForm('form', '{url action="readerListData" p = {$page-1}}', 'data'); return false;" {if {$page-1}==0}disabled{/if}> &lt; </button>
                 <span style="margin:5%">Strona {$page} z {$lastPage-1}</span>
-                <button class="primary" formaction="{url action = "readerList" p = {$page+1}}" {if {$page+1}=={$lastPage}}disabled{/if}> &gt; </button>
-                <button class="primary" formaction="{url action = "readerList" p = {$lastPage-1}}" {if {$page}=={$lastPage-1}}disabled{/if}> &gt;&gt; </button>
+                <button class="primary" onclick="ajaxPostForm('form', '{url action="readerListData" p = {$page+1}}', 'data'); return false;" {if {$page+1}=={$lastPage}}disabled{/if}> &gt; </button>
+                <button class="primary" onclick="ajaxPostForm('form', '{url action="readerListData" p = {$lastPage-1}}', 'data'); return false;" {if {$page}=={$lastPage-1}}disabled{/if}> &gt;&gt; </button>
             </center>
         </form>
     {else}

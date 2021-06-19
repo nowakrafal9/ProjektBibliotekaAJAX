@@ -7,7 +7,7 @@
                 {strip}
                     <tr>
                         <td style="width: 90%">{$r["title"]}</td>
-                        <td style="width: 10%"><center><a href="{url action = 'titleInfo'}/{$r['id_book']}" class="button small">Informacje</a></center></td>
+                        <td style="width: 10%"><center><a href="{url action = 'titleInfo'}/{$r['id_title']}" class="button small">Informacje</a></center></td>
                     </tr>
                 {/strip}
                 {/foreach}

@@ -43,15 +43,25 @@
             if (App::getMessages()->isError()){ return false; }
             
             if(!preg_match('/^[a-zA-ząćęłńóśźżĄĘŁŃÓŚŹŻ\x20]{3,50}$/', $this->reader->name)){ Utils::addErrorMessage("Podano niepoprawne imię"); }
-            if(!preg_match('/^[a-zA-ząćęłńóśźżĄĘŁŃÓŚŹŻ\x20]{3,50}$/', $this->reader->surname)){ Utils::addErrorMessage("Podano niepoprawne nazwisko"); }
-            if(!preg_match('/^[a-zA-ząćęłńóśźżĄĘŁŃÓŚŹŻ\x20]{3,50}$/', $this->reader->city)){ Utils::addErrorMessage("Podano niepoprawną nazwe miasta"); }
-            if(!preg_match('/^[a-zA-ząćęłńóśźżĄĘŁŃÓŚŹŻ0-9\x20]{3,100}$/', $this->reader->address)){ Utils::addErrorMessage("Podano niepoprawny adres"); }
+            if(!preg_match('/^[a-zA-ząćęłńóśźżĄĘŁŃÓŚŹŻ\x20-]{3,50}$/', $this->reader->surname)){ Utils::addErrorMessage("Podano niepoprawne nazwisko"); }
+            if(!preg_match('/^[a-zA-ząćęłńóśźżĄĘŁŃÓŚŹŻ\x20-]{3,50}$/', $this->reader->city)){ Utils::addErrorMessage("Podano niepoprawną nazwe miasta"); }
+            if(!preg_match('/^[a-zA-ząćęłńóśźżĄĘŁŃÓŚŹŻ0-9\x20.-]{3,100}$/', $this->reader->address)){ Utils::addErrorMessage("Podano niepoprawny adres"); }
             if(!preg_match('/^\d{2}-\d{3}$/', $this->reader->postalCode)){ Utils::addErrorMessage("Podano niepoprawny kod pocztowy"); }
             if(!preg_match('/^\d{9,11}$/', $this->reader->phoneNumber)){ Utils::addErrorMessage("Podano niepoprawny nr telefonu"); }
             if(!empty(trim($this->reader->email))){
                 if(!filter_var($this->reader->email, FILTER_VALIDATE_EMAIL)){
                     Utils::addErrorMessage("Podano niepoprawny email"); 
                 }
+            }
+            
+            if (App::getMessages()->isError()){ return false; }
+            
+            $exists = App::getDB()->has("borrower_info", ["phone_number" => $this->reader->phoneNumber, "id_borrower[!]" => $this->reader->id_borrower]);  
+            if($exists) { Utils::addErrorMessage('Podany numer telefonu jest już zajęty'); }
+            
+            if(!empty(trim($this->reader->email))){
+                $exists = App::getDB()->has("borrower_info", ["email" => $this->reader->email, "id_borrower[!]" => $this->reader->id_borrower]);  
+                if($exists) { Utils::addErrorMessage('Podany adres email jest już zajęty'); }
             }
             
             if (App::getMessages()->isError()){ return false; }

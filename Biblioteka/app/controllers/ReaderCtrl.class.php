@@ -96,7 +96,7 @@
                 App::getSmarty()->assign('r', FunctionsDB::getRecords("get", "borrower_info", null, "*", $where));
 
                 # Get borrowed books by reader
-                $join =["[><]book_stock" => ["id_book" => "id_book"]];
+                $join =["[><]book_stock" => "id_book"];
                 $column = ["borrowed_books.id_book", "borrowed_books.id_borrower", "borrowed_books.return_date", "book_stock.title"];
                 App::getSmarty()->assign('records', FunctionsDB::getRecords("select", "borrowed_books", $join, $column, $where));
 
