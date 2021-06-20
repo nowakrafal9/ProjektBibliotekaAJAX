@@ -88,7 +88,7 @@
             if($this -> getURL()){   
                 # Check if title exists
                 if(!App::getDB()->has("book_info", ["id_title" => $this->book->id_book])){
-                    App::getRouter()->redirectTo("bookList");
+                    App::getRouter()->redirectTo("titleList");
                 }
                 
                 # Get book info    
