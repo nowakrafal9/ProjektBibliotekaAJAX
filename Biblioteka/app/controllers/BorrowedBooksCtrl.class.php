@@ -47,8 +47,8 @@
                 $filter_params['id_borrower[~]'] = $this->book->id_reader.'%';
             }
             if (isset($this->book->status)) {
-                if($this->book->status == 0){ $filter_params['id_borrower[>=]'] = date("Y-m-d"); }
-                if($this->book->status == 1){ $filter_params['id_borrower[<]'] = date("Y-m-d"); }
+                if($this->book->status == 0){ $filter_params['return_date[<]'] = date("Y-m-d"); }
+                if($this->book->status == 1){ $filter_params['return_date[>=]'] = date("Y-m-d"); }
             }
             App::getSmarty()->assign('searchForm', $this->book);
                 

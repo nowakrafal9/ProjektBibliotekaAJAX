@@ -95,7 +95,7 @@
                 }
 
                 # Redirect to page
-                App::getRouter()->forwardTo("borrowedList");
+                App::getRouter()->redirectTo("borrowedList");
             } else if($book_exist){
                 # Get book info from DB
                 $join = ["[><]book_info" => "book_code"];

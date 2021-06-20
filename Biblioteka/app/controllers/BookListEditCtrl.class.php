@@ -58,7 +58,7 @@
                     if (App::getConf()->debug){ Utils::addErrorMessage($e->getMessage()); }
                 }
             }
-            App::getRouter()->forwardTo('bookList');
+            App::getRouter()->redirectTo('bookList');
         }
         
         public function action_bookSave() {
