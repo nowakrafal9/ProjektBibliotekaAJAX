@@ -68,7 +68,6 @@
                     App::getDB()->insert("book_stock", [
                         "id_book" => $this->book->id_book,
                         "book_code" => $this->book->book_code,
-                        "title" => $title,
                         "borrowed" => 0,
                         "id_employee" => SessionUtils::load("id_employee", true)
                         ]);

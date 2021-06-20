@@ -102,14 +102,14 @@
                 
                 # Get borrowed book info
                 $where = ["borrowed_books.id_book" => $this->book->id_book];
-
-                $join = ["[><]book_stock" => ["book_stock.id_book" => "id_book"]];       
-                $column = ["borrowed_books.id_book", "book_stock.title", "borrowed_books.borrow_date", "borrowed_books.return_date"];
-                App::getSmarty()->assign('book', FunctionsDB::getRecords("get", "borrowed_books", $join, $column, $where)); 
-
-                $returnDate = FunctionsDB::getRecords("get", "borrowed_books", $join, "borrowed_books.return_date", $where);
+                $join = ["[><]book_info" => "book_code", "[><]borrowed_books" => "id_book"]; 
+                $column = ["borrowed_books.id_book", "book_info.title", "borrowed_books.borrow_date", "borrowed_books.return_date"];
+                App::getSmarty()->assign('book', FunctionsDB::getRecords("get", "book_stock", $join, $column, $where));
+                
+                $returnDate = FunctionsDB::getRecords("get", "borrowed_books", null, "borrowed_books.return_date", $where);
                 $today = date("Y-m-d");
                 $timeLeft = round((strtotime($returnDate) - strtotime($today))/ (60 * 60 * 24));
+                
                 if($timeLeft >= 0){
                     App::getSmarty()->assign('afterDeadline', 'no');
                     if($timeLeft == 1){ App::getSmarty()->assign('timeLeft', $timeLeft." dzień"); }

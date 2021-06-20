@@ -123,7 +123,9 @@
                 $filter_params['book_stock.id_book[~]'] = $this->book->book_code.'%';
             }
             if (isset($this->book->title) && strlen($this->book->title) > 0) {
-                $filter_params['book_stock.title[~]'] = $this->book->title.'%';
+                $bookCodes = FunctionsDB::getRecords("select", "book_info", null, "book_code", ["title[~]" => $this->book->title]);
+
+                $filter_params['book_stock.book_code[~]'] = $bookCodes;
             }
             if (isset($this->book->borrowed)) {
                 $filter_params['book_stock.borrowed[~]'] = $this->book->borrowed.'%';

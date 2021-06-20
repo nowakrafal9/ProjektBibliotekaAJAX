@@ -98,8 +98,8 @@
                 App::getRouter()->forwardTo("borrowedList");
             } else if($book_exist){
                 # Get book info from DB
-                $join = ["[><]book_info" => ["book_stock.book_code" => "book_code"]];
-                $colum =["book_stock.id_book", "book_stock.book_code", "book_stock.title"];
+                $join = ["[><]book_info" => "book_code"];
+                $colum =["book_stock.id_book", "book_stock.book_code", "book_info.title"];
                 $where = ["book_stock.id_book" =>  $this->book->id_book];
                 App::getSmarty()->assign('book', FunctionsDB::getRecords("get", "book_stock", $join, $colum, $where));
 
@@ -143,22 +143,24 @@
                 if (isset($this->book->id_book) && strlen($this->book->id_book) > 0) {
                     $filter_params['id_book[~]'] = $this->book->id_book.'%';
                 }
-                if (isset($this->book->title) && strlen($this->book->title) > 0) {
-                    $filter_params['title[~]'] = $this->book->title.'%';
-                }
+//                if (isset($this->book->title) && strlen($this->book->title) > 0) {
+//                    $filter_params['title[~]'] = $this->book->title.'%';
+//                }
                 $filter_params['borrowed[~]'] = 0;
 
                 App::getSmarty()->assign('searchForm', $this->book);
                         
                 # Get books if searched
                 if(isset($this->book->id_book) || isset($this->book->title)){
-                    $order = ["title","id_book"];
+                    $order = ["book_info.title","book_stock.id_book"];
                     $where = FunctionsDB::prepareWhere($filter_params, $order);
 
-                    $column = ["id_book", "title"];
-                    App::getSmarty()->assign('records', FunctionsDB::getRecords("select", "book_stock", null, $column, $where));
+                    $column = ["id_book", "book_info.title"];
+                    $join = ["[><]book_info]" => "book_code"];
+                            
+                    App::getSmarty()->assign('records', FunctionsDB::getRecords("select", "book_stock", $join, $column, $where));
 
-                    App::getSmarty()->assign('numRecords',FunctionsDB::countRecords("book_stock", $where));
+                    App::getSmarty()->assign('numRecords',FunctionsDB::countRecords("book_stock", ["id_book[~]" => $this->book->id_book.'%']));
 
                     App::getSmarty()->assign('formSent', 1);
                 }
