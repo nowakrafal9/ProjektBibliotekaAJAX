@@ -45,7 +45,7 @@
             if(!preg_match('/^[a-zA-ząćęłńóśźżĄĘŁŃÓŚŹŻ\x20]{3,50}$/', $this->reader->name)){ Utils::addErrorMessage("Podano niepoprawne imię"); }
             if(!preg_match('/^[a-zA-ząćęłńóśźżĄĘŁŃÓŚŹŻ\x20-]{3,50}$/', $this->reader->surname)){ Utils::addErrorMessage("Podano niepoprawne nazwisko"); }
             if(!preg_match('/^[a-zA-ząćęłńóśźżĄĘŁŃÓŚŹŻ\x20-]{3,50}$/', $this->reader->city)){ Utils::addErrorMessage("Podano niepoprawną nazwe miasta"); }
-            if(!preg_match('/^[a-zA-ząćęłńóśźżĄĘŁŃÓŚŹŻ0-9\x20.-]{3,100}$/', $this->reader->address)){ Utils::addErrorMessage("Podano niepoprawny adres"); }
+            if(!preg_match('/^[a-zA-ząćęłńóśźżĄĘŁŃÓŚŹŻ0-9\x20\x2F.-]{3,100}$/', $this->reader->address)){ Utils::addErrorMessage("Podano niepoprawny adres"); }
             if(!preg_match('/^\d{2}-\d{3}$/', $this->reader->postalCode)){ Utils::addErrorMessage("Podano niepoprawny kod pocztowy"); }
             if(!preg_match('/^\d{9,11}$/', $this->reader->phoneNumber)){ Utils::addErrorMessage("Podano niepoprawny nr telefonu"); }
             if(!empty(trim($this->reader->email))){
